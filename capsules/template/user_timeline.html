@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Time Capsules</h2>
+<div>
+    {% for capsule in user_capsules %}
+    <div>
+        <h3>Open Date: {{ capsule.open_date }}</h3>
+        <!-- Link to the detail page for each capsule -->
+        <a href="{% url 'time_capsule_detail' capsule.id %}">View Capsule</a>
+    </div>
+    {% empty %}
+    <p>You have no time capsules.</p>
+    {% endfor %}
+</div>
+{% endblock %}

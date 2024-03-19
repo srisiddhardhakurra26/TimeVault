@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Time Capsule for {{ capsule.open_date }}</h2>
+
+{% if capsule.image %}
+<img src="{{ capsule.image.url }}" alt="Capsule Image" style="max-width: 100%;">
+{% endif %}
+
+<p>{{ capsule.message }}</p>
+{% endblock %}

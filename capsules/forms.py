@@ -19,3 +19,9 @@ class TimeCapsuleForm(forms.ModelForm):
         widgets = {
             'open_date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+    def clean_open_date(self):
+        open_date = self.cleaned_data.get('open_date')
+        if open_date < timezone.now().date():
+            raise ValidationError("The open date cannot be in the past.")
+        return open_date

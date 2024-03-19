@@ -2,25 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}TimeVault{% endblock title %}</title>
+    <title>Time Vault</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to TimeVault</h1>
-    </header>
+<nav>
+    <ul>
+        <li><a href="{% url 'user_timeline' %}">My Timeline</a></li>
+        <li><a href="{% url 'create_time_capsule' %}">Create Time Capsule</a></li>
+        <li><form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" 
+                    style="background: none!important; border: none; 
+                        padding: 0!important; font-family: Arial, sans-serif; color: blue; 
+                        text-decoration: underline; cursor: pointer;">
+                        Logout
+            </button>
+        </form>
+        </li>
+    </ul>
+</nav>
 
-    <nav>
-        <!-- Navigation Links -->
-    </nav>
+{% block content %}
+<!-- Child templates will insert content here -->
+{% endblock %}
 
-    <main>
-        {% block content %}
-        {% endblock content %}
-    </main>
-
-    <footer>
-        <!-- Footer Content -->
-    </footer>
 </body>
 </html>
