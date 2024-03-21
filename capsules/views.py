@@ -16,7 +16,9 @@ def register(request):
 
 
 from .forms import TimeCapsuleForm
+from django.utils import timezone
 def create_time_capsule(request):
+    form = TimeCapsuleForm()
     if request.method == 'POST':
         form = TimeCapsuleForm(request.POST, request.FILES)
         if form.is_valid():
@@ -25,7 +27,7 @@ def create_time_capsule(request):
             time_capsule.save()
             return redirect('user_timeline')  # Redirect to a confirmation page or the capsule detail view
     else:
-        form = TimeCapsuleForm()
+        form.fields['open_date'].widget.attrs.update({'min': timezone.now().date().isoformat()})
     return render(request, 'create_time_capsule.html', {'form': form})
 
 

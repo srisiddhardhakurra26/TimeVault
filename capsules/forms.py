@@ -11,6 +11,8 @@ class UserRegisterForm(UserCreationForm):
 
 
 from .models import TimeCapsule
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 class TimeCapsuleForm(forms.ModelForm):
     class Meta:
